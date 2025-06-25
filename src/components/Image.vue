@@ -7,7 +7,7 @@ defineProps<{ image: Image }>()
 
 <template>
   <picture>
-    <source media="(min-width: 1200px)" :srcset="image.desktop">
+    <source media="(min-width: 1440px)" :srcset="image.desktop">
     <source media="(min-width: 768px)" :srcset="image.tablet">
     <img :src="image.mobile" alt="The dessert, beautifully presented and highlighting it's mouth-watering deliciousness."/>
   </picture> 

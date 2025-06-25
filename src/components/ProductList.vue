@@ -8,7 +8,7 @@ defineProps<{ products: IProduct[] }>()
 
 <template>
 
-  <ul class="product-list">
+  <ul>
     <li v-for="product in products" :key="product.name">
       <Product :product="product" />
     </li>
@@ -18,9 +18,13 @@ defineProps<{ products: IProduct[] }>()
 
 <style scoped>
   ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
     list-style-type: none;
+  }
+  @media only screen and (min-width: 768px) {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
   }
 </style>
