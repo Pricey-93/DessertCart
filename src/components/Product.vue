@@ -15,7 +15,7 @@ defineProps<{ product: Product }>()
     <div>
       <p class="category">{{ product.category }}</p>
       <h3 class="name">{{ product.name }}</h3>
-      <data class="price" :value="product.price">£{{ product.price.toPrecision(3) }}</data>
+      <data class="price" :value="product.price">£{{ product.price.toFixed(2) }}</data>
     </div>
   </article>
 </template>
