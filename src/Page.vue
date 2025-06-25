@@ -3,7 +3,7 @@
   import type { Product } from './types';
   import ProductList from './components/ProductList.vue'
   import Footer from './components/Footer.vue'
-import OrderCart from './components/OrderCart.vue';
+  import OrderCart from './components/OrderCart.vue';
 
   async function fetchData(): Promise<Product[]> {
     let response;
@@ -19,7 +19,7 @@ import OrderCart from './components/OrderCart.vue';
     return [];
   }
 
-  let products = ref<Product[]>([]);
+  const products = ref<Product[]>([]);
 
   onMounted(async () => {
     products.value = await fetchData();
