@@ -1,25 +1,93 @@
 <script setup lang="ts">
+import { useCart } from "../store/cart";
 
-defineProps<{ }>()
+const { cartItems, remove } = useCart();
 
 </script>
 
 <template>
   <aside>
-    <h2>Your Cart(0)</h2>
-    <img src="/public/assets/images/illustration-empty-cart.svg" />
-    <p>Your added items will appear here</p>
+    <h2>Your Cart({{ cartItems.length }})</h2>
+
+    <figure v-show="cartItems.length < 1">
+      <img src="/public/assets/images/illustration-empty-cart.svg" />
+      <figcaption>Your added items will appear here</figcaption>
+    </figure>
+
+    <dl v-for="(item, index) in cartItems" :key="item.name">
+      <div class="cart-item-summary-container">
+        <div class="cart-item-details-container">
+          <dt class="product-title">{{ item.name }}</dt>
+          <dd class="product-data">
+            <span class="quantity">{{ item.quantity }}x</span>
+            <span class="price">@£{{ item.price.toFixed(2) }}</span>
+            <span class="total-price">£{{ (item.price * item.quantity).toFixed(2) }}</span>
+          </dd>
+        </div>
+        <button type="button" v-on:click="remove(index)">
+          <img src="/assets/images/icon-remove-item.svg" alt="Add Icon"/>
+        </button>
+      </div>
+      <hr />
+    </dl>
+
   </aside>
 </template>
 
 <style scoped>
+  span {
+    display: inline-block;
+  }
+  hr {
+    margin-top: 0.5rem;
+    border: 0;
+    border-top: 2px solid var(--rose-100);
+  }
+  h2 {
+    color: var(--red);
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+  button {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 0;
+  }
   aside {
     background-color: var(--rose-50);
     border-radius: 8px;
     padding: 1rem;    
     text-align: center;
   }
-  h2 {
+  .cart-item-summary-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cart-item-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .product-title {
+    color: var(--rose-900);
+    font-weight: 700;
     text-align: left;
+  }
+  .product-data {
+    display: flex;
+    gap: 1rem;
+  }
+  .quantity {
+    color: var(--red);
+    font-weight: 600;
+  }
+  .price {
+    color: var(--rose-500);
+  }
+  .total-price {
+    color: var(--rose-500);
+    font-weight: 600;
   }
 </style>
