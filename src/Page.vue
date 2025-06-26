@@ -74,7 +74,7 @@
       grid-template-areas: 
       "title order-cart-section"
       "product-section order-cart-section";
-      grid-template-columns: auto 300px;
+      grid-template-columns: auto 350px;
     }
   }
 

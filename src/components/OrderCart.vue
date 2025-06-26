@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useCart } from "../store/cart";
+import Button from './Button.vue';
 
-const { cartItems, remove } = useCart();
+const { cartItems, remove, calculateOrderTotal } = useCart();
 
 </script>
 
@@ -24,12 +25,25 @@ const { cartItems, remove } = useCart();
             <span class="total-price">£{{ (item.price * item.quantity).toFixed(2) }}</span>
           </dd>
         </div>
-        <button type="button" v-on:click="remove(index)">
+        <button type="button" class="remove-button" v-on:click="remove(index)">
           <img src="/assets/images/icon-remove-item.svg" alt="Add Icon"/>
         </button>
       </div>
       <hr />
     </dl>
+
+    <div class="order-total-container" v-show="cartItems.length > 0">
+      <span>Order Total</span>
+      <span class="order-total-value">£{{ calculateOrderTotal().toFixed(2) }}</span>
+    </div>
+
+    <div class="carbon-neutral-banner" v-show="cartItems.length > 0">
+      <img style="vertical-align:sub" src="/assets/images/icon-carbon-neutral.svg"/> This is a <b>carbon-neutral</b> delivery
+    </div>
+
+    <Button class="confirm-order-button" v-show="cartItems.length > 0">
+      <span class="confirm-order-text">Confirm Order</span>
+    </Button>
 
   </aside>
 </template>
@@ -39,7 +53,8 @@ const { cartItems, remove } = useCart();
     display: inline-block;
   }
   hr {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     border: 0;
     border-top: 2px solid var(--rose-100);
   }
@@ -48,7 +63,7 @@ const { cartItems, remove } = useCart();
     text-align: left;
     margin-bottom: 1rem;
   }
-  button {
+  .remove-button {
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -89,5 +104,31 @@ const { cartItems, remove } = useCart();
   .total-price {
     color: var(--rose-500);
     font-weight: 600;
+  }
+  .order-total-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .order-total-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .carbon-neutral-banner {
+    background-color: var(--rose-100);
+    padding: 1rem 0.5em;
+  }
+  .confirm-order-button {
+    padding: 0.5rem;
+    background-color: var(--red);
+    border-radius: 24px;
+    border: 0;
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+  }
+  .confirm-order-text {
+    color: var(--rose-50);
   }
 </style>
