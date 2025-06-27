@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useCart } from "../store/cart";
 import Button from './Button.vue';
+import OrderConfirmationModal from "./OrderConfirmationModal.vue";
 
 const { cartItems, remove, calculateOrderTotal } = useCart();
-
 </script>
 
 <template>
@@ -25,9 +25,9 @@ const { cartItems, remove, calculateOrderTotal } = useCart();
             <span class="total-price">£{{ (item.price * item.quantity).toFixed(2) }}</span>
           </dd>
         </div>
-        <button type="button" class="remove-button" v-on:click="remove(index)">
+        <Button class="remove-button" :callback="() => remove(index)">
           <img src="/assets/images/icon-remove-item.svg" alt="Add Icon"/>
-        </button>
+        </Button>
       </div>
       <hr />
     </dl>
@@ -41,9 +41,7 @@ const { cartItems, remove, calculateOrderTotal } = useCart();
       <img style="vertical-align:sub" src="/assets/images/icon-carbon-neutral.svg"/> This is a <b>carbon-neutral</b> delivery
     </div>
 
-    <Button class="confirm-order-button" v-show="cartItems.length > 0">
-      <span class="confirm-order-text">Confirm Order</span>
-    </Button>
+    <OrderConfirmationModal />
 
   </aside>
 </template>
@@ -70,6 +68,8 @@ const { cartItems, remove, calculateOrderTotal } = useCart();
     border: 0;
   }
   aside {
+    position: sticky;
+    top: 0;
     background-color: var(--rose-50);
     border-radius: 8px;
     padding: 1rem;    
@@ -116,19 +116,9 @@ const { cartItems, remove, calculateOrderTotal } = useCart();
     font-weight: 700;
   }
   .carbon-neutral-banner {
+    margin-bottom: 1rem;
     background-color: var(--rose-100);
     padding: 1rem 0.5em;
   }
-  .confirm-order-button {
-    padding: 0.5rem;
-    background-color: var(--red);
-    border-radius: 24px;
-    border: 0;
-    width: 50%;
-    text-align: center;
-    cursor: pointer;
-  }
-  .confirm-order-text {
-    color: var(--rose-50);
-  }
+
 </style>
