@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useCart } from "../store/cart";
 import Button from "./Button.vue";
-const { incrementQuantity, decrementQuantity } = useCart();
+const { cartItems, incrementQuantity, decrementQuantity } = useCart();
 
 defineProps<{ productName: string }>()
 
@@ -13,7 +13,7 @@ defineProps<{ productName: string }>()
       <img src="/assets/images/icon-decrement-quantity.svg" />
     </Button>
 
-    <span class="quantity-text">0</span>
+    <span class="quantity-text">{{ cartItems.find(item => item.name === productName)?.quantity }}</span>
 
     <Button class="quantity-button" :callback="() => incrementQuantity(productName)">
       <img src="/assets/images/icon-increment-quantity.svg" />
