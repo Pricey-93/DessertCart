@@ -30,6 +30,10 @@ export function useCart() {
     }
   }
 
+  function clear(): void {
+    cartItems.value = [];
+  }
+
   function createCartItem(product: Product): CartItem {
     return {
       image: {thumbnail: product.image.thumbnail},
@@ -46,6 +50,7 @@ export function useCart() {
     calculateOrderTotal,
     createCartItem,
     incrementQuantity,
-    decrementQuantity
+    decrementQuantity,
+    clear,
   };
 }
