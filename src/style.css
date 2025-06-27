@@ -9,6 +9,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --font-size-product-name: 16px;
+
   --red: hsl(14, 86%, 42%);
   --green: hsl(159, 69%, 38%);
   --rose-50: hsl(20, 50%, 98%);
@@ -17,9 +19,4 @@
   --rose-400: hsl(7, 20%, 60%);
   --rose-500: hsl(12, 20%, 44%);
   --rose-900: hsl(14, 65%, 9%);
-}
-
-#page {
-  min-height: 100dvh;
-  margin: 0 auto;
 }
