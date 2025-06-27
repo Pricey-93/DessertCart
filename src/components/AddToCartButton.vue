@@ -34,5 +34,8 @@ img {
   width: 50%;
   cursor: pointer;
 }
+.add-to-cart-button:hover {
+  border-color: var(--red);
+}
 
 </style>

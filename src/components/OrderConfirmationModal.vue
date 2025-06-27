@@ -166,6 +166,9 @@ hr {
   text-align: center;
   cursor: pointer;
 }
+.cta-button:hover {
+  background-color: color-mix(in srgb, var(--red) 60%, black);
+}
 .cta-text {
   color: var(--rose-50);
 }
