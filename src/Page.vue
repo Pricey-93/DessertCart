@@ -9,7 +9,7 @@
     let response;
 
     try {
-      response = await fetch('/data.json');
+      response = await fetch('./data.json');
       return response.json();
     }
     catch (error) {
