@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/Pricey-93/DessertCart)
+- Solution URL: [DessertCart](https://github.com/Pricey-93/DessertCart)
 
 ## My process
 
