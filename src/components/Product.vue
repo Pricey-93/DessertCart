@@ -7,13 +7,12 @@ import QuantityUpdater from './QuantityUpdater.vue';
 
 const {cartItems} = useCart();
 defineProps<{ product: Product }>();
-
 </script>
 
 <template>
   <article v-if="product" class="product">
 
-    <figure class="figure">
+    <figure :class="cartItems.find(item => item.name === product.name) ? 'selected' : ''">
       <Image :image="product.image" />
 
       <QuantityUpdater v-if="cartItems.find(item => item.name === product.name)" :productName="product.name" />
@@ -31,10 +30,14 @@ defineProps<{ product: Product }>();
 </template>
 
 <style scoped>
-  .figure {
+  figure {
     position: relative;
+    border: 2px solid none;
     border-radius: 8px;
     margin-bottom: 1rem;
+  }
+  .selected {
+    border: 2px solid var(--red);
   }
   .category {
     font-weight: 600;
